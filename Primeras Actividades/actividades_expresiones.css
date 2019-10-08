@@ -1,0 +1,9 @@
+#dni:valid
+{
+    border: 1px solid green;
+}
+
+#dni:invalid
+{
+    border: 1px solid red;
+}
