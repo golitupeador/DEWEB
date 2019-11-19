@@ -1,0 +1,18 @@
+function Plaza(matricula, horaEntrada, precioTotal)
+{
+    this.matricula=matricula;
+    this.horaEntrada=horaEntrada;
+    this.precioTotal=precioTotal;
+    this.calcularPrecioTotal=function() ESTO
+    {
+
+
+    };
+}
+Y ESTO
+Plaza.prototype.calcularPrecioTotal=function()
+{
+    
+}
+
+SON LO MISMO

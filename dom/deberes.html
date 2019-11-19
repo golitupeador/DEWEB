@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>3 cuadros</title>
+    <link rel="stylesheet" type="text/css" href="css/estilos.css"></link>
+    <script src="deberes.js"></script>
+    <script src="select.js"></script>
+</head>
+<body>
+    <form action="">
+        <fieldset>
+            <legend>Gestion Alumnos</legend>
+            <div class="alumnos">
+                <textarea id="textarea" rows="30" cols="30" ></textarea>
+                <input id="matricular" class="matricular" type="button" value="matricular"></input>
+            </div>
+            <div class="matriculados">
+                <select id="alumnosMatriculados" multiple="multiple" size="28" ></select>
+            </div>
+            <div class="botones">
+                    <input id="derT" type="button" value=">>"></input>
+                    <input id="der" type="button" value=">"></input>
+                    <input id="izqT"type="button" value="<<"></input>
+                    <input id="izq" type="button" value="<"></input>
+                </div>
+            <div class="aprobados">
+                <select class="alumnosAprobados" multiple="multiple"></select>
+            </div>
+        </fieldset>
+    </form>
+</body>
+</html>

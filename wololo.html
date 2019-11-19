@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script>
+    window.addEventListener("load",function()
+    {
+        var div1=document.getElementById("i1");
+        div1.addEventListener("click", function(ev)
+        {
+            alert("pulsado 1")
+        },true)
+        var div2=document.getElementById("i2");
+        div2.addEventListener("click", function(ev)
+        {
+            alert("pulsado 2")
+            ev.stopPropagation();
+        })
+    })
+    
+    window.addEventListener("keydown",function(ev)
+    {
+        if(ev.ctrlKey && ev.code=="KeyP")
+        {
+            ev.preventDefault();
+            ev.stopPropagation();
+        }
+    })
+    </script>
+</head>
+<body>
+    <div id="i1">div 1
+        <div id="i2">div 2</div>
+    </div>
+</body>
+</html>

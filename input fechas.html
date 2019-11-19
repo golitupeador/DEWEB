@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script>
+    window.addEventListener("load",function()
+    {
+        var fecha= document.getElementById("fecha");
+        var myVar;
+        var boton;
+        fecha.addEventListener("keypress",function(ev)
+        {      
+            
+            var longitud=fecha.value.length;
+
+            //fecha.value.selectionStart =fecha.value.selectionEnd=longitud;
+            var key = (ev.which) ? ev.which : ev.keyCode;
+            if (key > 31 && (key < 48 || key > 57)) 
+            {
+                ev.preventDefault();
+            }else
+            {
+                boton=ev.key;
+                ev.preventDefault();
+            }
+            if(longitud==10)
+            {
+                ev.preventDefault();
+            }
+            if(ev.target.selectionStart!=longitud && ev.target.selectionEnd!=longitud )
+            {
+                ev.preventDefault();
+            }
+        })
+        
+        fecha.addEventListener("keyup",function(ev)
+        {      
+            
+            fecha.value=fecha.value+boton;
+            boton="";
+            var longitud=fecha.value.length;
+
+            if(longitud==2 || longitud==5)
+            {
+                fecha.value=fecha.value+"/";
+            }
+            
+        })
+    })
+    </script>
+</head>
+<body>
+    Fecha
+    <br>
+    <input type="text" id="fecha">
+</body>
+</html>

@@ -104,18 +104,6 @@ TresEnRaya.prototype.victoria=function()
             alert("has ganado");
         }
     }
-    
-
-
-
-
-/*
-    if(( 
-        (this.juego[1][0]==this.juego[1][1] && this.juego[0][1]==this.juego[1][2]) ||
-        (this.juego[2][0]==this.juego[2][1] && this.juego[2][1]==this.juego[2][2]))
-    {
-        alert("Has ganado");
-    }*/
 }
 
 function seleccion(x,y)

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="tablas.js"></script>
+</head>
+<body>
+        <table id="tabla" class="ordenable" border="2"> 
+            <thead>
+                <th class="dni">DNI</th>
+                <th class="cadena">Nombre</th>
+                <th class="cadena">Apellido 1</th>
+                <th class="cadena">Apellido 2</th>
+                <th class="boton">Borrar</th>
+            </thead>
+            <tbody class="cuerpo">
+                <tr>
+                    <td>100</td>
+                    <td>Ernesto</td>
+                    <td>Garcia</td>
+                    <td>Arnedo</td>
+                    <td><button class="borrar">Borrar</button></td>
+                </tr>
+                <tr>
+                    <td>11</td>
+                    <td>Pepe</td>
+                    <td>Urruga</td>
+                    <td>Moreno</td>
+                    <td class="noEditable"><button class="borrar">Borrar</button></td>
+                </tr>
+                <tr>
+                    <td>12</td>
+                    <td>Alvaro</td>
+                    <td>Antero</td>
+                    <td>Basico</td>
+                    <td><button class="borrar">Borrar</button></td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                <form id="formulario">
+                    <td><input id="dniFormulario" type="text"></td>
+                    <td><input id="nombreFormulario" type="text"></td>
+                    <td><input id="apellido1Formulario" type="text"></td>
+                    <td><input id="apellido2Formulario" type="text"></td>
+                    <td><input id="guardarFormulario" type="submit"></td>
+                </form>
+                </tr>
+            </tfoot>
+        </table>
+</body>
+</html>

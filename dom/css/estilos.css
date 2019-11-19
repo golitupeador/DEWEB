@@ -1,0 +1,57 @@
+body{
+height: 150px;
+width: 1000px;
+}
+
+fieldset{
+    height: 150px;
+    width: 1000px;  
+}
+.matricular{
+    height: 20px;
+    width: 100px;
+}
+
+select{
+float: left;
+height: 100px;
+width: 200px;
+}
+
+textarea{
+    float: left;
+    height: 100px;
+    width: 200px;
+    resize:none
+    }
+.clear{
+    clear: both;
+}
+.botones{
+    height: 1000px;
+    float: left;
+    width: 32px;
+}
+.alumnos
+{
+    height: 150px;
+    width: 200px;
+    float: left;
+}
+.matriculados
+{
+    margin-left: 30px;
+    margin-right: 30px;
+    height: 150px;
+    width: 200px;
+    float: left;
+}
+
+.aprobados
+{
+    margin-left: 30px;
+    height: 150px;
+    width: 200px;
+    float: left;
+}
+

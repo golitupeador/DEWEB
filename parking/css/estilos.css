@@ -1,0 +1,23 @@
+#ingresarMatricula, #sacarMatricula, #ticket, .cajaTabla, .input{
+    float: left;
+}
+#tabla
+{
+    width: 300px;
+    margin-left: 100px;
+    margin-right: 100px;
+}
+input
+{
+    width: 100px;
+}
+#ticket
+{
+    width: 300px;
+    margin-left: 100px;
+    border: solid black 2px;
+}
+.tickets
+{
+    border: solid black 2px;
+}
