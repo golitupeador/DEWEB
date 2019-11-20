@@ -3,11 +3,11 @@ function Parking()
     this.numeroPlazas=5;
     this.plazasOcupadas=[];
 
-    this.crearPlaza=function(matricula)
+    this.comprobarPolicia=function(matricula)
     {
         var resultado=true;
         var matriculaEncontrada=false;
-        var matriculasRobadas = JSON.parse(localStorage.getItem("matricula"));
+        var matriculasRobadas = JSON.parse(localStorage.getItem("matriculaRobada"));
         this.plazasOcupadas.forEach(plaza => {
             if(plaza.matricula==matricula)
             {
@@ -26,17 +26,23 @@ function Parking()
                 }
                 else
                 {
-                    
+                    resultado==true;
                 }
             });
             
         }
-        if(matriculaEncontrada==false && resultado==true)
+        return resultado;
+    }
+    this.crearPlaza=function(matricula)
+    {
+        if(parking.numeroPlazas > parking.plazasOcupadas.length)
         {
             var plaza=new Plaza(matricula);  
-            this.plazasOcupadas.push(plaza);
-        }    
-        return resultado;    
+            this.plazasOcupadas.push(plaza);              
+        }else
+        {
+            alert("NO HAY PLAZAS")
+        }
     }
     
     this.getPlaza=function(matricula)
@@ -59,45 +65,23 @@ function Parking()
         }
     }
 
-    //Nos servira para, dandoleuna matricula, crear el ticket y liberar la plaza
-    this.liberarPlaza=function(matricula)
-    {
-        var resultado=false;
-        var index;
-        
-        this.plazasOcupadas.forEach(plaza => {
-            if(plaza.matricula==matricula)
-            {
-                index = this.plazasOcupadas.indexOf(matricula);
-                resultado=true;
-            }
-        });
-        return {ok: resultado, indice: index, };
-    }
 
     this.eliminarPlaza=function(matricula)
     {
         var index;
+        var resultado=false;
         this.plazasOcupadas.forEach(plaza => {
             if(plaza.matricula==matricula)
             {    
                 index = this.plazasOcupadas.indexOf(plaza);
-            }  
+                resultado=true;
+            }
             
         });
-        /*for(var i= 0; i<this.plazasOcupadas.length; i++)
-        {
-            var plazaOcupada=this.plazasOcupadas[i];
-            if(plazaOcupada.matricula==matricula)
-            {    
-                index = this.plazasOcupadas.indexOf(plazaOcupada);
-            }    
-        }*/
-       
-        delete this.plazasOcupadas[index];
+        this.plazasOcupadas.splice(index,1);
+        return resultado;
     }
 
-   
 }
 
 function Plaza(matricula)
@@ -116,28 +100,77 @@ function Plaza(matricula)
             if(minutos>30)
             {
                 minutos=minutos-30;
-                resultado=minutos*0.05;
+                var resultadoBruto=minutos*0.05;
+                resultado=resultadoBruto.toFixed(2);
                 if(resultado>15)
                 {
                     resultado=15;
                 }
             }
         }else
-        {
-            resultado=diasEstacionado*15
+        {   //TODOS ESTOS CONDICIONALES SON PARA CALCULAR EL PRECIO CUANDO EL COCHE LLEVA MAS DE UN DIA 
+            var salidaDiaEntrada=new Date();
+            var salidaDiaEntrada=this.horaEntrada;
+
+            salidaDiaEntrada.setHours(23);
+            salidaDiaEntrada.setMinutes(59);
+            salidaDiaEntrada.setSeconds(59);
+
+            console.log(salidaDiaEntrada);
+            console.log(this.horaEntrada);
+            var segundosTranscurridos=(salidaDiaEntrada-this.horaEntrada)/1000;
+            var minutos=Math.round(segundosTranscurridos/60);
+            
+            //Si la diferencia entrel ahora de entrada y las 23:59 es menor de 30 ese dia no lo contamos
+            if(minutos<0 || minutos<30)
+            {
+                resultado=(diasEstacionado-1)*15  
+            }
+            //Si la diferencia es mayor de 300, lo contamos como 500
+            else if(minutos>300)
+            {
+                resultado=diasEstacionado*15  
+            }
+            //Si esta entre esos valores tenemos que calcularlo
+            else if(minutos>30 && minutos<300)
+            {
+                resultado=(diasEstacionado-1)*15
+                minutos=minutos-30;
+                var resultadoProvisional = 0;
+                var resultadoProvisionalBruto = 0;
+                resultadoProvisionalBruto=resultadoProvisionalBruto+(minutos*0.05);
+                resultadoProvisional=resultadoProvisionalBruto.toFixed(2);
+
+                if(resultadoProvisional>15)
+                {
+                    resultado=resultado+15;
+                }else
+                {
+                    resultado=resultado+resultadoProvisional;
+                }
+            }
+              
+            //Y ahora a calcular el precio del dia actual
             var horaCero = new Date();
             horaCero.setHours(0,0,0,0);
             var horaSalida=new Date();
             var segundosTranscurridos=(horaSalida-horaCero)/1000;
             var minutos=Math.round(segundosTranscurridos/60);
-            if(minutos>30)
+            if(minutos>30 )
             {
                 
                 minutos=minutos-30;
-                resultado=resultado+(minutos*0.05);
-                if(resultado>15)
+                var resultadoProvisional = 0;
+                var resultadoProvisionalBruto = 0;
+                resultadoProvisionalBruto=resultadoProvisionalBruto+(minutos*0.05);
+                resultadoProvisional=resultadoProvisionalBruto.toFixed(2);
+
+                if(resultadoProvisional>15)
                 {
                     resultado=resultado+15;
+                }else
+                {
+                    resultado=resultado+resultadoProvisional;
                 }
             }
         }
@@ -152,5 +185,10 @@ function Plaza(matricula)
         var diferenciaEntreFechas=(fechaActual.getFullYear()*365+fechaActual.getMonth()*12+fechaActual.getDate())-(fechaEstacionado.getFullYear()*365+fechaEstacionado.getMonth()*12+fechaEstacionado.getDate());
         return diferenciaEntreFechas;
     }
+}
+
+function Caja()
+{
+    dineroRecaudado= 0;
 }
 
